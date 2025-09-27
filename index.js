@@ -14,7 +14,6 @@ var ganar;
 function Agregar () {
 
 	let inputForm = document.getElementById("input-nueva-palabra");
-
 	let nuevaPalabra = inputForm.value;
 	words.push(nuevaPalabra);
 	inputForm.value = "";
@@ -231,9 +230,6 @@ function DibujoBase () {
 
 
 Iniciar();
-cuello();
-cabeza();
-Cuerpo();
 
 
 //error del boleano: se debe declarar el valor del booleano dentro de la funcion, de esa manera debera pasar nuevamente por el valor originalmente declarado y no se quedara con el ya cambiado;
@@ -308,7 +304,8 @@ for(i=0; i<palabraElegida.length;i++) {
 
 			Cuerpo();
 			alert("PERDISTE!");
-			resetear();
+			Iniciar();
+			intentos = 5;
 
 		} if (intentos == 4) {
 			DibujoBase();
