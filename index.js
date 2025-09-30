@@ -9,7 +9,6 @@ var ganar;
 
 
 
- 
 
 function Agregar () {
 
@@ -64,6 +63,7 @@ function Iniciar () {
 palabraElegida = words[Math.floor(Math.random()*words.length)];
 
 
+
 pincel.fillStyle = "white";
 pincel.rect(0,0,1200,800);
 pincel.fill();
@@ -86,9 +86,9 @@ for (i=0; i<palabraElegida.length; i++) {
         }
 }
 
-function resetear () {
-	pincel.setTransform(1, 0, 0, 1, 0, 0);
-}
+// function resetear () {
+// 	pincel.setTransform(1, 0, 0, 1, 0, 0);
+// }
 
 
 
@@ -107,6 +107,45 @@ function EscribirTexto (txt,x,y) {
 
 function cambiar () {
 	encontrado = false;
+}
+
+
+
+function cabeza () {
+	pincel.beginPath();
+	pincel.lineWidth = 5;
+	pincel.arc(450, 210, 50, 0, 2 * 3.14);
+	pincel.stroke();
+
+	console.log("cabeza")
+
+
+}
+
+
+
+
+
+
+function cuello () {
+	//palo mas largo//
+	pincel.beginPath();
+	pincel.lineWidth = 5;
+	pincel.moveTo(100,100);
+	pincel.lineTo(450,100);
+	pincel.closePath();
+	pincel.stroke();
+
+	//palo mas corto//
+	pincel.beginPath();
+	pincel.lineWidth = 5;
+	pincel.moveTo(450,100);
+	pincel.lineTo(450,160);
+	pincel.closePath();
+	pincel.stroke();
+
+	console.log("cuello")
+
 }
 
 function Cuerpo () {
@@ -150,41 +189,12 @@ function Cuerpo () {
 	pincel.stroke();
 	pincel.closePath();
 
+	console.log("cuerpo")
+
 
 
 }
 
-
-function cabeza () {
-	pincel.beginPath();
-	pincel.lineWidth = 5;
-	pincel.arc(450, 210, 50, 0, 2 * 3.14);
-	pincel.stroke();
-
-
-}
-
-
-
-
-function cuello () {
-	//palo mas largo//
-	pincel.beginPath();
-	pincel.lineWidth = 5;
-	pincel.moveTo(100,100);
-	pincel.lineTo(450,100);
-	pincel.closePath();
-	pincel.stroke();
-
-	//palo mas corto//
-	pincel.beginPath();
-	pincel.lineWidth = 5;
-	pincel.moveTo(450,100);
-	pincel.lineTo(450,160);
-	pincel.closePath();
-	pincel.stroke();
-
-}
 
 function DibujoCuerpo () {
 
@@ -195,6 +205,8 @@ function DibujoCuerpo () {
     pincel.lineTo(100, 700);
     pincel.closePath();
     pincel.stroke();
+
+	console.log("dibujo cuerpo")
 
 
 	
@@ -226,10 +238,11 @@ function DibujoBase () {
 	pincel.closePath();
 	pincel.stroke();
 
+	console.log("dibujo base")
+
 }
 
 
-Iniciar();
 
 
 //error del boleano: se debe declarar el valor del booleano dentro de la funcion, de esa manera debera pasar nuevamente por el valor originalmente declarado y no se quedara con el ya cambiado;
@@ -300,13 +313,6 @@ for(i=0; i<palabraElegida.length;i++) {
 
 		} if (encontrado) { 
 			intentos = intentos - 1;
-		} if (intentos == -1) {
-
-			Cuerpo();
-			alert("PERDISTE!");
-			Iniciar();
-			intentos = 5;
-
 		} if (intentos == 4) {
 			DibujoBase();
 			
@@ -321,16 +327,26 @@ for(i=0; i<palabraElegida.length;i++) {
 			alert("Solo te queda 1 intento!");
 			intentos = 0;
 //aqui converti intentos en 0 para sacarlo del estado en el cual se ejecutara el alerta//
+		} if (intentos == -1) {
+
+			
+			Cuerpo();
+			alert("PERDISTE!")
+
+		
+		
+			
+
+		} if (intentos == -2) {
+			Iniciar();
+			intentos = 5
 		}
 
 
 	};
 			
 
-
-	 
-
-	
+Iniciar();
 
 
 
