@@ -18,6 +18,8 @@ function Agregar () {
 	let nuevaPalabra = inputForm.value;
 	words.push(nuevaPalabra);
 	inputForm.value = "";
+
+	
 }
 
 
@@ -28,18 +30,27 @@ function Agregar () {
 
 
 
-StartButton.addEventListener("click",  Iniciar);
+// StartButton.addEventListener("click",  Iniciar);
 
 keyboard.addEventListener('keypress', txt => {
-	console.log(txt);
+	
+	//AQUI PONGO UNA CONDICION PARA QUE NO SE EJECUTE EL JUEGO MIENTRAS ESTOY AGREGANDO UNA PALABRA//
+	let inputForm = document.getElementById("input-nueva-palabra");
 
-txt = txt.key;
+	if(document.activeElement === inputForm) {
+		
+	} else {
+
+		txt = txt.key;
 let x = 230;
 let y = 700;
 
 comprobar(txt,x,y);
 
-});
+}});
+	
+
+
 
 // <!-------------------------------CANVAS--------------------------------------------->
 
