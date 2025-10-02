@@ -1,3 +1,5 @@
+
+
 var words = ["manzana","pera","holamundo"];
 var intentos = 5;
 var palabraElegida = ""; //Palabra que se eligira//
@@ -329,15 +331,31 @@ for(i=0; i<palabraElegida.length;i++) {
 //aqui converti intentos en 0 para sacarlo del estado en el cual se ejecutara el alerta//
 		} if (intentos == -1) {
 
-			
+			let texto = document.getElementById("text");
 			Cuerpo();
-			alert("PERDISTE!")
 
-		
+			let texto2 = document.getElementById("text2")
+			
+
+			texto.textContent= "PERDISTE"	
+			
+			texto2.textContent = "Presione espacio para volver a jugar"
 		
 			
 
 		} if (intentos == -2) {
+			
+
+			let texto = document.getElementById("text");
+			Cuerpo();
+
+			let texto2 = document.getElementById("text2")
+			
+
+			texto.textContent= ""	
+			
+			texto2.textContent = ""
+
 			Iniciar();
 			intentos = 5
 		}
