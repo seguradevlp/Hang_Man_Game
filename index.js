@@ -1,12 +1,17 @@
 
 
-var words = ["manzana","pera","holamundo"];
-var intentos = 5;
-var palabraElegida = ""; //Palabra que se eligira//
-var StartButton = document.getElementById("iniciar-juego");
-var txt = "";
-var keyboard = document.querySelector("body");//donde se capturaran los eventos del teclado//
-var ganar;
+let words = ["pera"];
+let foundWords = [];
+let intentos = 5;
+let palabraElegida = ""; //Palabra que se eligira//
+let StartButton = document.getElementById("iniciar-juego");
+let txt = "";
+let keyboard = document.querySelector("body");//donde se capturaran los eventos del teclado//
+let ganar;
+let victorias;
+let repetido = false;
+
+
 
 
 
@@ -40,10 +45,15 @@ keyboard.addEventListener('keypress', txt => {
 	if(document.activeElement === inputForm) {
 		
 	} else {
+		
+txt = txt.key;
+console.log(txt)
 
-		txt = txt.key;
+
 let x = 230;
 let y = 700;
+
+
 
 comprobar(txt,x,y);
 
@@ -74,8 +84,11 @@ function Iniciar () {
 
 //Palabra Elegida//
 palabraElegida = words[Math.floor(Math.random()*words.length)];
+ victorias = palabraElegida.length;
 
 
+
+console.log('victorias: ' + victorias)
 
 pincel.fillStyle = "white";
 pincel.rect(0,0,1200,800);
@@ -98,11 +111,6 @@ for (i=0; i<palabraElegida.length; i++) {
 
         }
 }
-
-// function resetear () {
-// 	pincel.setTransform(1, 0, 0, 1, 0, 0);
-// }
-
 
 
 
@@ -263,7 +271,9 @@ function DibujoBase () {
 
 function comprobar (txt,x,y) {
 
-var encontrado = true;
+
+
+let encontrado = true;
 
 	
 //El error se encontraba en que si queria que comprobara cada letra, debia hacer que aumentara la i que se encuentra en palabra elegida//
@@ -273,52 +283,66 @@ for(i=0; i<palabraElegida.length;i++) {
 	if(txt == palabraElegida[i]) {
 
 				if(i == 0) {
+					
 					EscribirTexto(txt,x,y);
 					encontrado = false;
+					victorias = victorias - 1;
+					
+					
+					
+					
 					
 				} else if(i == 1) {
 					EscribirTexto(txt, x + 120,y);
 					encontrado = false;
+					victorias = victorias - 1;
 					
 					
 					
 				 } else if (i == 2) {
 				 	EscribirTexto(txt, x + 230,y);
 				 	encontrado = false;
+					victorias = victorias - 1;
 				 	
 				 					 	
 				 } else if (i == 3) {
 				 	EscribirTexto(txt, x + 330,y);
 				 	encontrado = false;
+					victorias = victorias - 1;
 				 	
 				 	
 				 
 				  } else if (i == 4) {
 				  	EscribirTexto(txt, x + 450, y);
 				  	encontrado = false;
+					victorias = victorias - 1;
 				  	
 				  	
 				  	
 				  } else if (i == 5) {
 				  	EscribirTexto(txt, x + 560, y);
 				  	encontrado = false;
+					victorias = victorias - 1;
 				  	
 		
 				  } else if (i == 6) {
 				  	EscribirTexto(txt, x + 670, y);
 				  	encontrado = false;
+					victorias = victorias - 1;
 				  	
 				  	
 				  	
 				  } else if ( i == 7) {
 				  	EscribirTexto(txt, x + 790, y);
 				  	encontrado = false;
+					victorias = victorias - 1;
 				 
 				  	
 				  	
 				  } else if ( i == 8) {
 				  	EscribirTexto(txt, x + 900, y);
 				  	encontrado = false;
+					victorias = victorias - 1;
 				  	
 				  	
 				} 
@@ -326,6 +350,7 @@ for(i=0; i<palabraElegida.length;i++) {
 
 		} if (encontrado) { 
 			intentos = intentos - 1;
+		
 		} if (intentos == 4) {
 			DibujoBase();
 			
@@ -339,6 +364,8 @@ for(i=0; i<palabraElegida.length;i++) {
 			cabeza();
 			alert("Solo te queda 1 intento!");
 			intentos = 0;
+
+			
 //aqui converti intentos en 0 para sacarlo del estado en el cual se ejecutara el alerta//
 		} if (intentos == -1) {
 
@@ -348,9 +375,9 @@ for(i=0; i<palabraElegida.length;i++) {
 			let texto2 = document.getElementById("text2")
 			
 
-			texto.textContent= "PERDISTE"	
+			texto.textContent= "PERDISTE!!!"	
 			
-			texto2.textContent = "Presione espacio para volver a jugar"
+			texto2.textContent = "Presione espacio para volver a jugar..."
 		
 			
 
@@ -369,7 +396,28 @@ for(i=0; i<palabraElegida.length;i++) {
 
 			Iniciar();
 			intentos = 5
+		} 
+		
+		if(victorias == 0) {
+
+		
+
+			let texto = document.getElementById("text");
+			
+
+			let texto2 = document.getElementById("text2")
+			
+
+			texto.textContent= "Felicidades, has ganado!!"	
+			
+			texto2.textContent = "Presione espacio para volver a jugar..."
+			
+
+			
+
 		}
+
+		
 
 
 	};

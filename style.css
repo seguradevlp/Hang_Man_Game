@@ -1,6 +1,10 @@
-
+* {
+  font-family: system-ui, sans-serif;
+font-weight: normal;
+}
 
 .titulo {
+
   padding: 15px;
   width: 30vw;
   margin: auto;
@@ -11,7 +15,7 @@
   border: 0;
   color: white;
   font-weight: bold;
-  background-color: green;
+  background-color: rgb(0, 136, 199);
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
