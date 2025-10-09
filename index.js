@@ -1,15 +1,14 @@
 
 
-let words = ["pera"];
-let foundWords = [];
+let words = ["pera", "manzana"];
 let intentos = 5;
+const letrasIntentadas = new Set();
 let palabraElegida = ""; //Palabra que se eligira//
 let StartButton = document.getElementById("iniciar-juego");
 let txt = "";
 let keyboard = document.querySelector("body");//donde se capturaran los eventos del teclado//
 let ganar;
 let victorias;
-let repetido = false;
 
 
 
@@ -39,26 +38,40 @@ function Agregar () {
 
 keyboard.addEventListener('keypress', txt => {
 	
+
+	 txt = txt.key.toLowerCase();
 	//AQUI PONGO UNA CONDICION PARA QUE NO SE EJECUTE EL JUEGO MIENTRAS ESTOY AGREGANDO UNA PALABRA//
 	let inputForm = document.getElementById("input-nueva-palabra");
+	if(document.activeElement === inputForm) return;
 
-	if(document.activeElement === inputForm) {
-		
-	} else {
-		
-txt = txt.key;
-console.log(txt)
 
+	if(letrasIntentadas.has(txt)) return;
+
+	if(letrasIntentadas.has(txt)) {
+		alert("ya usaste esta letra")
+		return
+
+	}
+
+	letrasIntentadas.add(txt)
 
 let x = 230;
 let y = 700;
-
-
-
 comprobar(txt,x,y);
 
-}});
+});
 	
+		
+
+	
+	
+		
+
+
+
+	
+		
+
 
 
 
@@ -85,6 +98,8 @@ function Iniciar () {
 //Palabra Elegida//
 palabraElegida = words[Math.floor(Math.random()*words.length)];
  victorias = palabraElegida.length;
+
+
 
 
 
@@ -271,84 +286,82 @@ function DibujoBase () {
 
 function comprobar (txt,x,y) {
 
-
-
-let encontrado = true;
+//en este caso puse encontrado fue para que recorra todos los if y cuando vuelva arriba, entonces ya se cierre debido a que encontrado es true;
+let encontrado = false;
 
 	
-//El error se encontraba en que si queria que comprobara cada letra, debia hacer que aumentara la i que se encuentra en palabra elegida//
+
 
 for(i=0; i<palabraElegida.length;i++) {
 
 	if(txt == palabraElegida[i]) {
 
+
 				if(i == 0) {
-					
 					EscribirTexto(txt,x,y);
-					encontrado = false;
+					encontrado = true;
 					victorias = victorias - 1;
 					
-					
-					
-					
-					
+
+				
 				} else if(i == 1) {
 					EscribirTexto(txt, x + 120,y);
-					encontrado = false;
+					encontrado = true;
 					victorias = victorias - 1;
+					
 					
 					
 					
 				 } else if (i == 2) {
-				 	EscribirTexto(txt, x + 230,y);
-				 	encontrado = false;
+				 	EscribirTexto(txt,  x + 230,y);
+				 	encontrado = true;
 					victorias = victorias - 1;
 				 	
 				 					 	
 				 } else if (i == 3) {
 				 	EscribirTexto(txt, x + 330,y);
-				 	encontrado = false;
+				 	encontrado = true;
 					victorias = victorias - 1;
 				 	
 				 	
 				 
 				  } else if (i == 4) {
 				  	EscribirTexto(txt, x + 450, y);
-				  	encontrado = false;
+				  	encontrado = true;
 					victorias = victorias - 1;
 				  	
 				  	
 				  	
 				  } else if (i == 5) {
 				  	EscribirTexto(txt, x + 560, y);
-				  	encontrado = false;
+				  	encontrado = true;
 					victorias = victorias - 1;
 				  	
 		
 				  } else if (i == 6) {
 				  	EscribirTexto(txt, x + 670, y);
-				  	encontrado = false;
+				  	encontrado = true;
 					victorias = victorias - 1;
 				  	
 				  	
 				  	
 				  } else if ( i == 7) {
 				  	EscribirTexto(txt, x + 790, y);
-				  	encontrado = false;
+				  	encontrado = true;
 					victorias = victorias - 1;
 				 
 				  	
 				  	
 				  } else if ( i == 8) {
 				  	EscribirTexto(txt, x + 900, y);
-				  	encontrado = false;
+				  	encontrado = true;
 					victorias = victorias - 1;
 				  	
 				  	
 				} 
 			} 
 
-		} if (encontrado) { 
+		} if (encontrado === false) { 
 			intentos = intentos - 1;
 		
 		} if (intentos == 4) {
