@@ -47,11 +47,7 @@ keyboard.addEventListener('keypress', txt => {
 
 	if(letrasIntentadas.has(txt)) return;
 
-	if(letrasIntentadas.has(txt)) {
-		alert("ya usaste esta letra")
-		return
-
-	}
+	if (!/^[a-zñ]$/.test(txt)) return;
 
 	letrasIntentadas.add(txt)
 
@@ -61,9 +57,7 @@ comprobar(txt,x,y);
 
 });
 	
-		
 
-	
 	
 		
 
@@ -382,6 +376,24 @@ for(i=0; i<palabraElegida.length;i++) {
 //aqui converti intentos en 0 para sacarlo del estado en el cual se ejecutara el alerta//
 		} if (intentos == -1) {
 
+			
+			keyboard.addEventListener('keydown', e => {
+
+				if(e.code === "Space") {
+				let texto = document.getElementById("text");
+			
+
+				let texto2 = document.getElementById("text2")
+			
+
+				texto.textContent= ""	
+			
+			texto2.textContent = ""
+			intentos = 5;
+			letrasIntentadas.clear()
+				Iniciar();
+			}})
+			
 			let texto = document.getElementById("text");
 			Cuerpo();
 
@@ -391,24 +403,12 @@ for(i=0; i<palabraElegida.length;i++) {
 			texto.textContent= "PERDISTE!!!"	
 			
 			texto2.textContent = "Presione espacio para volver a jugar..."
+
+			
+
 		
 			
 
-		} if (intentos == -2) {
-			
-
-			let texto = document.getElementById("text");
-			Cuerpo();
-
-			let texto2 = document.getElementById("text2")
-			
-
-			texto.textContent= ""	
-			
-			texto2.textContent = ""
-
-			Iniciar();
-			intentos = 5
 		} 
 		
 		if(victorias == 0) {
